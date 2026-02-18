@@ -42,7 +42,7 @@ public/              # CV, favicon, robots.txt...
 
 1. **Cloner le dépôt**
    ```bash
-   git clone <YOUR_GIT_URL>
+   git clone https://github.com/hadydieye/hady-dieye-portfolio.git
    cd hady-dieye-portfolio
    ```
 2. **Installer les dépendances**

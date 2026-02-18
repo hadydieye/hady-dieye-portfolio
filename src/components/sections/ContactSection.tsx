@@ -1,13 +1,29 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/ui/SectionTitle";
-import { Mail, MessageCircle, Globe, Github } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
+import DiscordIcon from "@/components/icons/DiscordIcon";
 
 const contactMethods = [
-  { icon: Mail, label: "Email", value: "hady@dieye.dev", href: "mailto:hady@dieye.dev" },
-  { icon: MessageCircle, label: "Discord", value: "scriptseinsei", href: "#" },
-  { icon: Globe, label: "LinkedIn", value: "Mohamed Hady Diallo", href: "https://www.linkedin.com/in/mohamed-hady-diallo-162711354/" },
-  { icon: Github, label: "GitHub", value: "github.com/hadydieye", href: "https://github.com/hadydieye" },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "scriptseinseidieye@gmail.com",
+    href: "mailto:scriptseinseidieye@gmail.com",
+  },
+  { icon: DiscordIcon, label: "Discord", value: "scriptseinsei", href: "#" },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Mohamed Hady Diallo",
+    href: "https://www.linkedin.com/in/mohamed-hady-diallo-162711354/",
+  },
+  {
+    icon: Github,
+    label: "GitHub",
+    value: "github.com/hadydieye",
+    href: "https://github.com/hadydieye",
+  },
 ];
 
 const ContactSection = () => {
