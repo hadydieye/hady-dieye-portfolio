@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SectionTitle from "@/components/ui/SectionTitle";
-import hadyPhoto from "@/assets/hady-photo.jpg";
+// TODO: replace "about-photo.jpg" with the new image file placed in src/assets
+import aboutPhoto from "@/assets/about-photo.png";
 import { Shield, Code, Terminal, Award } from "lucide-react";
 
 const highlights = [
@@ -27,8 +28,8 @@ const AboutSection = () => {
           >
             <div className="relative rounded-2xl overflow-hidden border border-neon-green/20">
               <img
-                src={hadyPhoto}
-                alt="Hady Dieye - Security Engineer & Full-Stack Developer"
+                src={aboutPhoto}
+                alt="Profil - Security Engineer & Full-Stack Developer"
                 className="w-full aspect-[3/4] object-cover object-top"
               />
               {/* Overlay gradient */}
