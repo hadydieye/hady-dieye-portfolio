@@ -1,5 +1,9 @@
 # Portfolio – Hady Dieye
 
+**Site en ligne :** https://hadydieyeportfolio.netlify.app
+
+![Aperçu du portfolio](/screenshots/preview.png)
+
 Ce dépôt contient le code source de mon portfolio, ingénieur en sécurité et développeur full-stack. Le site présente mon profil, mes compétences, mes projets (sécurité, développement et hybrides), mes résultats et permet de le contacter.
 ---
 
