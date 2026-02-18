@@ -16,11 +16,40 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // lock body scroll when mobile menu is open to avoid interaction issues when 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    // prevent background scrolling when menu open on mobile
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    // cleanup in case component unmounts while menu is open
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  // Handle smooth scroll and menu close
+  const handleNavClick = (href: string) => {
+    setMobileOpen(false);
+    // Small delay to allow menu to close before scrolling
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
+  // Debug function to check mobile menu state
+  useEffect(() => {
+    console.log('Mobile menu state:', mobileOpen);
+  }, [mobileOpen]);
 
   return (
     <motion.nav
@@ -56,51 +85,76 @@ const Navbar = () => {
         {/* Mobile toggle */}
         <button
           className="lg:hidden text-foreground p-2"
-          onClick={() => setMobileOpen(!mobileOpen)}
+          style={{ zIndex: 10000 }}
+          onClick={() => {
+            console.log('Toggle clicked, current state:', mobileOpen);
+            setMobileOpen(!mobileOpen);
+          }}
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - with blur and slide animation */}
       <AnimatePresence>
         {mobileOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 top-14 sm:top-16 bg-background/60 backdrop-blur-sm lg:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm lg:hidden"
+            style={{ zIndex: 999999 }}
+            onClick={() => setMobileOpen(false)}
+          >
+            <motion.div 
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-14 sm:top-16 right-0 bottom-0 w-72 glass-navbar flex flex-col p-6 gap-3 lg:hidden overflow-y-auto"
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="absolute top-16 right-0 w-72 h-full bg-background/95 backdrop-blur-xl border-l border-border shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-lg font-bold text-gradient-green">Menu</h3>
+                  <motion.button 
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => setMobileOpen(false)}
+                    className="p-2 hover:bg-muted/50 rounded-lg transition-colors"
+                  >
+                    <X size={20} />
+                  </motion.button>
+                </div>
+                <div className="space-y-2">
+                  {navLinks.map((link, index) => (
+                    <motion.button
+                      key={link.href}
+                      initial={{ opacity: 0, x: 50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => handleNavClick(link.href)}
+                      className="block w-full text-left py-3 px-4 text-base hover:bg-muted/50 rounded-lg transition-all hover:translate-x-1"
+                    >
+                      {link.label}
+                    </motion.button>
+                  ))}
+                </div>
+                <motion.a
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                  href="/CV_Mohamed_Hady_Diallo.pdf"
+                  download
                   onClick={() => setMobileOpen(false)}
-                  className="text-base font-body text-muted-foreground hover:text-neon-green transition-colors py-2 border-b border-border/30"
+                  className="block w-full btn-neon-green text-center mt-6"
                 >
-                  {link.label}
-                </a>
-              ))}
-              <a
-                href="/CV_Mohamed_Hady_Diallo.pdf"
-                download
-                onClick={() => setMobileOpen(false)}
-                className="btn-neon-green text-center mt-4"
-              >
-                📄 Télécharger CV
-              </a>
+                  📄 Télécharger CV
+                </motion.a>
+              </div>
             </motion.div>
-          </>
+          </motion.div>
         )}
       </AnimatePresence>
     </motion.nav>
