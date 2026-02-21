@@ -1,3 +1,13 @@
+import crimsonOpsImg from "@/assets/projects/crimson-ops.png";
+import terminalHackerImg from "@/assets/projects/terminal-hacker.png";
+import loumaAppImg from "@/assets/projects/louma-app.png";
+import loumaAppDarkImg from "@/assets/projects/louma-app-dark.png";
+import depenseTrackerImg from "@/assets/projects/depense-tracker.png";
+import noteeaImg from "@/assets/projects/noteea.jpg";
+import noteeaDarkImg from "@/assets/projects/noteea-dark.jpg";
+import passvibeImg from "@/assets/projects/passvibe.png";
+import csiImg from "@/assets/projects/csi.png";
+
 export interface SecurityProject {
   id: number;
   title: string;
@@ -6,6 +16,9 @@ export interface SecurityProject {
   badge: string;
   badgeClass: string;
   techStack: string[];
+  image: string;
+  isMobile?: boolean;
+  secondaryImage?: string;
   githubLink?: string;
   liveLink?: string;
 }
@@ -19,17 +32,8 @@ export const securityProjects: SecurityProject[] = [
     badge: "RED TEAM",
     badgeClass: "badge-red",
     techStack: ["React 18", "TypeScript", "Tailwind CSS", "Lucide React", "Vite"],
+    image: crimsonOpsImg,
     githubLink: "https://github.com/hadydieye/CrimsonOps",
-  },
-  {
-    id: 2,
-    title: "Port Scanner",
-    description: "Scanner de ports réseau multithreadé en Python. Support du multithreading configurable (100 threads), timeout personnalisable, mode verbeux, affichage coloré et export des résultats en .txt.",
-    type: "TOOL DEV",
-    badge: "TOOL DEV",
-    badgeClass: "badge-green",
-    techStack: ["Python", "Colorama", "Threading", "Socket", "CLI"],
-    githubLink: "https://github.com/hadydieye/Port_scanner",
   },
   {
     id: 3,
@@ -39,6 +43,7 @@ export const securityProjects: SecurityProject[] = [
     badge: "HACKER TOOL",
     badgeClass: "badge-red",
     techStack: ["TypeScript", "React", "Vite", "Tailwind CSS"],
+    image: terminalHackerImg,
     githubLink: "https://github.com/hadydieye/Script-terminal-hacker",
     liveLink: "https://script-hacker-terminal.netlify.app/",
   },
@@ -52,6 +57,9 @@ export interface DevProject {
   badge: string;
   badgeClass: string;
   techStack: string[];
+  image: string;
+  isMobile?: boolean;
+  secondaryImage?: string;
   githubLink?: string;
   liveLink?: string;
 }
@@ -65,16 +73,20 @@ export const devProjects: DevProject[] = [
     badge: "MOBILE APP",
     badgeClass: "badge-cyan",
     techStack: ["React Native", "Expo", "TypeScript", "Supabase", "TanStack Query", "Zod"],
+    image: loumaAppImg,
+    secondaryImage: loumaAppDarkImg,
+    isMobile: true,
     githubLink: "https://github.com/hadydieye/louma-app",
   },
   {
     id: 2,
     title: "Dépense Tracker",
-    description: "Application de gestion de dépenses personnelles inspirée de Revolut/N26. Dashboard, budgets avec alertes visuelles, analyses avec graphiques, notifications push, export CSV et multi-devises (GNF/EUR/USD).",
+    description: "Application de gestion de de dépenses personnelles inspirée de Revolut/N26. Dashboard, budgets avec alertes visuelles, analyses avec graphiques, notifications push, export CSV et multi-devises (GNF/EUR/USD).",
     type: "WEB APP",
     badge: "WEB APP",
     badgeClass: "badge-cyan",
     techStack: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS v4", "Recharts", "shadcn/ui"],
+    image: depenseTrackerImg,
     githubLink: "https://github.com/hadydieye/Depense_tracker",
   },
   {
@@ -85,21 +97,14 @@ export const devProjects: DevProject[] = [
     badge: "PWA",
     badgeClass: "badge-cyan",
     techStack: ["React 18", "TypeScript", "Zustand", "Capacitor", "Recharts", "Tailwind CSS"],
+    image: noteeaImg,
+    secondaryImage: noteeaDarkImg,
+    isMobile: true,
     githubLink: "https://github.com/hadydieye/noteea",
   },
 ];
 
 export const hybridProjects: DevProject[] = [
-  {
-    id: 1,
-    title: "MatrixSec",
-    description: "Plateforme de cybersécurité avec esthétique Matrix. Application full-stack combinant interface de sécurité avancée avec base de données PostgreSQL et design immersif hacker.",
-    type: "SECDEVOPS",
-    badge: "SECDEVOPS",
-    badgeClass: "badge-green",
-    techStack: ["React", "TypeScript", "Tailwind CSS", "PostgreSQL", "Supabase", "Vite"],
-    githubLink: "https://github.com/hadydieye/matrixsec",
-  },
   {
     id: 2,
     title: "Passvibe",
@@ -108,6 +113,7 @@ export const hybridProjects: DevProject[] = [
     badge: "SECURITY TOOL",
     badgeClass: "badge-green",
     techStack: ["TypeScript", "React", "Vite", "Tailwind CSS"],
+    image: passvibeImg,
     githubLink: "https://github.com/hadydieye/Passvibe",
     liveLink: "https://passvibe.netlify.app/",
   },
@@ -119,6 +125,7 @@ export const hybridProjects: DevProject[] = [
     badge: "SECURE APP",
     badgeClass: "badge-green",
     techStack: ["React 18", "TypeScript", "Tailwind CSS", "React Hook Form", "Zod", "Radix UI"],
+    image: csiImg,
     githubLink: "https://github.com/hadydieye/csi-app",
   },
 ];
