@@ -1,7 +1,8 @@
 import { ReactNode, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Github, Menu, X } from "lucide-react";
+import { Github, Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 import DashboardSidebar from "./DashboardSidebar";
 
 interface DashboardLayoutProps {
@@ -22,6 +23,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const currentRoute = routeTitles[location.pathname] || "dashboard";
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -78,6 +80,27 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </div>
 
             <div className="flex items-center gap-3">
+              <button
+                onClick={toggleTheme}
+                className="w-9 h-9 rounded-md bg-muted/50 hover:bg-muted transition-colors flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.div
+                    key={theme}
+                    initial={{ y: -20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: 20, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="w-4 h-4 text-neon-cyan" />
+                    ) : (
+                      <Moon className="w-4 h-4 text-neon-purple" />
+                    )}
+                  </motion.div>
+                </AnimatePresence>
+              </button>
               <a
                 href="https://github.com/hadydieye"
                 target="_blank"

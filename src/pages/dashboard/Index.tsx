@@ -5,7 +5,7 @@ import aboutPhoto from "@/assets/about-photo.png";
 import StatCard from "@/components/dashboard/StatCard";
 import SkillBar from "@/components/dashboard/SkillBar";
 import ProjectCard from "@/components/dashboard/ProjectCard";
-import TerminalWidget from "@/components/dashboard/TerminalWidget";
+import InteractiveTerminal from "@/components/dashboard/InteractiveTerminal";
 import { securityProjects, devProjects } from "@/data/projects";
 
 const stats = [
@@ -156,7 +156,7 @@ const DashboardIndex = () => {
       </div>
 
       {/* Terminal Widget */}
-      <TerminalWidget />
+      <InteractiveTerminal />
     </div>
   );
 };
