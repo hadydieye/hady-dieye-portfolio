@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Github, Linkedin, Send, MapPin, Clock } from "lucide-react";
+import { Mail, Github, Linkedin, Send, MapPin, Clock, MessageCircle } from "lucide-react";
 
 const socialLinks = [
   {
@@ -12,14 +12,20 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://www.linkedin.com/in/hady-dieye/",
+    url: "https://www.linkedin.com/in/mohamed-hady-diallo-162711354/",
     color: "hover:text-neon-cyan",
   },
   {
     name: "Email",
     icon: Mail,
-    url: "mailto:contact@hadydieye.dev",
+    url: "mailto:scriptseinseidieye@gmail.com",
     color: "hover:text-neon-green",
+  },
+  {
+    name: "Discord",
+    icon: MessageCircle,
+    url: "#",
+    color: "hover:text-neon-purple",
   },
 ];
 
@@ -33,7 +39,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoLink = `mailto:contact@hadydieye.dev?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
+    const mailtoLink = `mailto:scriptseinseidieye@gmail.com?subject=${encodeURIComponent(formData.subject)}&body=${encodeURIComponent(
       `Nom: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     )}`;
     window.location.href = mailtoLink;
@@ -73,6 +79,26 @@ const Contact = () => {
             <h2 className="text-lg font-semibold text-foreground mb-4">Informations</h2>
             
             <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-neon-magenta/10 border border-neon-magenta/30 flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-neon-magenta" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-foreground">Email</div>
+                  <div className="text-xs text-muted-foreground">scriptseinseidieye@gmail.com</div>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-lg bg-neon-purple/10 border border-neon-purple/30 flex items-center justify-center">
+                  <MessageCircle className="w-5 h-5 text-neon-purple" />
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-foreground">Discord</div>
+                  <div className="text-xs text-muted-foreground">scriptseinsei</div>
+                </div>
+              </div>
+
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-lg bg-neon-green/10 border border-neon-green/30 flex items-center justify-center">
                   <MapPin className="w-5 h-5 text-neon-green" />

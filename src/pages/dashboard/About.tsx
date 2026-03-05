@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { MapPin, GraduationCap, Calendar, Code2, Shield, Terminal } from "lucide-react";
+import { MapPin, GraduationCap, Calendar, Code2, Shield, Terminal, Download, Github, Linkedin, Mail } from "lucide-react";
 import aboutPhoto from "@/assets/about-photo.png";
 
 const techStack = [
@@ -77,6 +77,43 @@ const About = () => {
                 <Code2 className="w-4 h-4 text-neon-cyan" />
                 <span className="text-sm text-neon-cyan font-medium">Full-Stack Developer</span>
               </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="/CV_Mohamed_Hady_Diallo.pdf"
+                download
+                className="btn-neon-green flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                Télécharger mon CV
+              </a>
+              <a
+                href="https://github.com/hadydieye"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border hover:border-neon-green/50 transition-colors text-sm text-foreground"
+              >
+                <Github className="w-4 h-4" />
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/mohamed-hady-diallo-162711354/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border hover:border-neon-cyan/50 transition-colors text-sm text-foreground"
+              >
+                <Linkedin className="w-4 h-4" />
+                LinkedIn
+              </a>
+              <a
+                href="mailto:scriptseinseidieye@gmail.com"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-lg border border-border hover:border-neon-magenta/50 transition-colors text-sm text-foreground"
+              >
+                <Mail className="w-4 h-4" />
+                Email
+              </a>
             </div>
           </div>
         </div>
